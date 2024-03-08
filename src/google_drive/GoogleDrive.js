@@ -64,7 +64,7 @@ export default function GoogleDrive(){
 
     return (
         <Box sx={{display:'flex'}}>
-            {nodes && <LeftPanelTree data={nodes} handleOnClick={handleOnClick}/>}
+            {nodes && <LeftPanelTree data={nodes} handleOnClick={handleOnClick} clickedNode={clickedNode}/>}
             <RightPanel node={clickedNode} handleOnClick={handleOnClick} handleGoBack={handleGoBack} handleOnFileClick={handleOnFileClick}/>
             {viewFile && <ViewFilePopup file={viewFile} exit={exitImage}/>}
         </Box>

@@ -38,7 +38,7 @@ export default function ViewFilePopup({file, exit}){
 
         setFileType(file.mimeType);
         setFileName(file.name);
-        console.log(file.mimeType);
+        //console.log(file.mimeType);
     }, [file]);
 
     return (

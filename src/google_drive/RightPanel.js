@@ -103,7 +103,7 @@ function FileItem({ file, thumbnail, handleOnFileClick }) {
         setImageError(true);
     };
 
-    console.log({id:file.id, thumbnail})
+    //console.log({id:file.id, thumbnail})
 
     if (file) {
         return (
