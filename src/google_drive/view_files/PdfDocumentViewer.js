@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
 import CircularProgress from "@mui/material/CircularProgress";
+import './style.css'
 
 async function getBlobFile(fileId, fileType) {
     try {
@@ -21,8 +22,8 @@ async function getBlobFile(fileId, fileType) {
     }
 }
 
-export default function PdfDocumentViewer ({ fileId, fileType }) {
-    const [documentBlob, setDocumentBlob] = useState(null);
+export default function PdfDocumentViewer ({ fileId, fileType, fileName }) {
+    /*const [documentBlob, setDocumentBlob] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -48,16 +49,33 @@ export default function PdfDocumentViewer ({ fileId, fileType }) {
 
     if (loading) {
         return (<CircularProgress />);
-    }
+    }*/
 
     return (
-        <>
+        /*<>
             {documentBlob && (
                 <iframe
                     src={URL.createObjectURL(documentBlob)}
                     width='100%' height='100%' frameBorder='0'>
                 </iframe>
             )}
-        </>
+        </>*/
+        <DocViewer
+            config={{
+                header: {
+                    disableHeader: true,
+                },
+                csvDelimiter: ",", // "," as default,
+                pdfZoom: {
+                    defaultZoom: 0.5, // 1 as default,
+                    zoomJump: 0.2, // 0.1 as default,
+                },
+                pdfVerticalScrollByDefault: true, // false as default
+            }}
+            documents={[
+                { uri: `https://test-google-drive-api.vercel.app/google_drive/${fileId}/blob?type=${fileType}`, fileType: fileType, fileName }
+            ]}
+        />
+
     );
 }
