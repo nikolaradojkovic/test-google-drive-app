@@ -1,5 +1,8 @@
+#react-doc-viewer {
+    background: rgba(0,0,0,0.4);
+}
 #react-doc-viewer #pdf-controls {
-    background-color: #FFF;
+    background-color: rgba(0,0,0,0.4);
     z-index: 10;
 }
 
