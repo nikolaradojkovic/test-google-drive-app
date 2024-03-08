@@ -43,7 +43,7 @@ export default function ViewFilePopup({file, exit}){
 
     return (
         <Box sx={{position:'fixed', top:0, left:0, background:'rgba(0,0,0,0.7)', height:1, width:1, display:'flex', alignItems: 'center', justifyContent:'center'}}>
-            <Button onClick={exit} variant={'contained'} sx={{position:'absolute', top:25, right:25, zIndex:10}}>Exit</Button>
+            <Button onClick={exit} variant={'contained'} sx={{position:'absolute', top:60, right:15, zIndex:10}}>Exit</Button>
             { wordDocument && <MicrosoftDocumentViewer fileId={wordDocument} fileType={fileType} fileName={fileName}/> }
             { pdfDocument && <PdfDocumentViewer fileId={pdfDocument} fileType={fileType} fileName={fileName}/> }
             { googleDocument && <GoogleDocumentViewer fileId={googleDocument} fileType={fileType} fileName={fileName}/> }
