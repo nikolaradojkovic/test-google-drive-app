@@ -96,26 +96,21 @@ function FileItem({ file, thumbnail, handleOnFileClick }) {
     }, [file]);
 
     const handleImageLoad = (e) => {
-        console.log(file.mimeType, e)
-        if(e.target.currentSrc !== ''){
-            setImageLoaded(true);
-        }
-
+        setImageLoaded(true);
     };
 
     const handleImageError = (err) => {
         setImageError(true);
-        console.log('image error')
-        console.log({err})
     };
 
+    console.log({id:file.id, thumbnail})
 
     if (file) {
         return (
             <Box sx={{ width: 200, height: 200, margin: 1, padding: 2, borderRight: '8px', border: '1px solid #999999', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'space-between', cursor:'pointer' }} onClick={() => handleOnFileClick(file)}>
                 <Typography>{file.name}</Typography>
                 <img
-                    src={(!imageLoaded || imageError) ? defaultThumbnail : thumbnail}
+                    src={(!imageLoaded || imageError || !thumbnail) ? defaultThumbnail : thumbnail}
                     width={"auto"}
                     height={"100%"}
                     style={{ display: 'block', margin:15, boxShadow:'1px 2px 10px 2px rgba(0,0,0,0.1)' }}
