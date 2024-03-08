@@ -47,7 +47,7 @@ function ViewFolder ({folder, handleOnClick, handleOnFileClick}){
     return (
         <Box>
             <Typography variant={"h5"} mb={2}>{folder.name} </Typography>
-            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: '2px' }}>
                 {
                     (content && content?.length > 0) && content.map(item => {
                         return (
@@ -64,12 +64,21 @@ function ViewFolder ({folder, handleOnClick, handleOnFileClick}){
 function FolderItem({folder, handleOnClick}){
     if(folder) {
         return (
-            <Box sx={{width:200, height:200, margin:1, padding:2, borderRight:'8px', border: '1px solid #999999', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'space-between', cursor:'pointer'}} onClick={() => handleOnClick(folder)}>
-                <Typography>{folder.name}</Typography>
+            <Box sx={{width:200, height:200, padding:2, marginTop:2, borderRadius:'8px', boxShadow:'1px 2px 10px 2px rgba(0,0,0,0.1)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'space-between', cursor:'pointer'}} onClick={() => handleOnClick(folder)}>
+                <Typography
+                    sx={{
+                        maxWidth: '180px', // Adjust the maximum width as needed
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        height:0.15
+                    }}
+                >{folder.name}</Typography>
                 <img
                     src={FolderImage}
-                    width={120}
-                    height={120}
+                    width={"70%"}
+                    height={"70%"}
+                    style={{objectPosition:'top', marginBottom:15 }}
                 />
             </Box>
         )
@@ -107,13 +116,21 @@ function FileItem({ file, thumbnail, handleOnFileClick }) {
 
     if (file) {
         return (
-            <Box sx={{ width: 200, height: 200, margin: 1, padding: 2, borderRight: '8px', border: '1px solid #999999', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'space-between', cursor:'pointer' }} onClick={() => handleOnFileClick(file)}>
-                <Typography>{file.name}</Typography>
+            <Box sx={{ width: 200, height: 200, padding: 2, marginTop:2, borderRadius: '8px', boxShadow:'1px 2px 10px 2px rgba(0,0,0,0.1)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'space-between', cursor:'pointer' }} onClick={() => handleOnFileClick(file)}>
+                <Typography
+                    sx={{
+                        maxWidth: '180px', // Adjust the maximum width as needed
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                        height:0.15
+                    }}
+                >{file.name}</Typography>
                 <img
                     src={(!imageLoaded || imageError || !thumbnail) ? defaultThumbnail : thumbnail}
-                    width={"auto"}
+                    width={"100%"}
                     height={"100%"}
-                    style={{ display: 'block', margin:15, boxShadow:'1px 2px 10px 2px rgba(0,0,0,0.1)' }}
+                    style={{ display: 'block', margin:15, boxShadow:'1px 2px 10px 2px rgba(0,0,0,0.1)', objectFit: (!imageLoaded || imageError || !thumbnail) ? "contain" : 'cover', objectPosition:'top' }}
                     onLoad={handleImageLoad}
                     onError={(e) => handleImageError(e)}
                     alt={file.name}
